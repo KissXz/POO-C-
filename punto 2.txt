@@ -1,0 +1,91 @@
+using System;
+
+class Program {
+    static void Main() {
+        // Crear una factura de prueba
+        Factura factura = new Factura("233f", "destornillador", 2, 13566);
+
+        // Mostrar detalles de la factura
+        Console.WriteLine("Detalles de la factura:");
+        Console.WriteLine($"Número de pieza: {factura.ObtenerNumeroPieza()}"); // Mostrar el número de pieza de la factura
+        Console.WriteLine($"Descripción: {factura.ObtenerDescripcion()}"); // Mostrar la descripción de la factura
+        Console.WriteLine($"Cantidad: {factura.ObtenerCantidad()}"); // Mostrar la cantidad de la factura
+        Console.WriteLine($"Precio por artículo: {factura.ObtenerPrecioPorArticulo()}"); // Mostrar el precio por artículo de la factura
+        Console.WriteLine($"Monto de la factura: {factura.ObtenerMontoFactura()}"); // Mostrar el monto total de la factura
+    }
+}
+
+class Factura {
+    // Miembros de datos
+    private string numeroPieza; // Número de pieza del artículo
+    private string descripcion; // Descripción del artículo
+    private int cantidad; // Cantidad de artículos
+    private int precioPorArticulo; // Precio por artículo
+
+    // Constructor para inicializar los miembros de datos
+    public Factura(string numeroPieza, string descripcion, int cantidad, int precioPorArticulo) {
+        EstablecerNumeroPieza(numeroPieza); // Establecer el número de pieza utilizando el método EstablecerNumeroPieza
+        EstablecerDescripcion(descripcion); // Establecer la descripción utilizando el método EstablecerDescripcion
+        EstablecerCantidad(cantidad); // Establecer la cantidad utilizando el método EstablecerCantidad
+        EstablecerPrecioPorArticulo(precioPorArticulo); // Establecer el precio por artículo utilizando el método EstablecerPrecioPorArticulo
+    }
+
+    // Método para establecer el número de pieza
+    public void EstablecerNumeroPieza(string numeroPieza) {
+        this.numeroPieza = numeroPieza; // Asignar el valor del parámetro numeroPieza al miembro de datos numeroPieza
+    }
+
+    // Método para obtener el número de pieza
+    public string ObtenerNumeroPieza() {
+        return numeroPieza; // Devolver el valor del miembro de datos numeroPieza
+    }
+
+    // Método para establecer la descripción
+    public void EstablecerDescripcion(string descripcion) {
+        this.descripcion = descripcion; // Asignar el valor del parámetro descripcion al miembro de datos descripcion
+    }
+
+    // Método para obtener la descripción
+    public string ObtenerDescripcion() {
+        return descripcion; // Devolver el valor del miembro de datos descripcion
+    }
+
+    // Método para establecer la cantidad
+    public void EstablecerCantidad(int cantidad) {
+        if (cantidad < 0) // Si la cantidad es negativa
+        {
+            this.cantidad = 0; // Establecer la cantidad en 0
+        }
+        else // Si no es asi 
+        {
+            this.cantidad = cantidad; // Asignar el valor del parámetro cantidad al miembro de datos cantidad
+        }
+    }
+
+    // Método para obtener la cantidad
+    public int ObtenerCantidad() {
+        return cantidad; // Devolver el valor del miembro de datos cantidad
+    }
+
+    // Método para establecer el precio por artículo
+    public void EstablecerPrecioPorArticulo(int precioPorArticulo) {
+        if (precioPorArticulo < 0) // Si el precio por artículo es negativo
+        {
+            this.precioPorArticulo = 0; // Establecer el precio por artículo en 0
+        }
+        else // Si no es asi 
+            { 
+            this.precioPorArticulo = precioPorArticulo; // Asignar el valor del parámetro precioPorArticulo al miembro de datos precioPorArticulo
+        }
+    }
+
+    // Método para obtener el precio por artículo
+    public int ObtenerPrecioPorArticulo() {
+        return precioPorArticulo; // Devolver el valor del miembro de datos precioPorArticulo
+    }
+
+    // Método para calcular el monto de la factura
+    public int ObtenerMontoFactura() {
+        return cantidad * precioPorArticulo; // Devolver el resultado de multiplicar la cantidad por el precio por artículo
+    }
+}

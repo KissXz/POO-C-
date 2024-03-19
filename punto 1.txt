@@ -1,0 +1,94 @@
+using System; // Importar el espacio de nombres System para poder utilizar la clase Console
+
+class Program // Definir la clase Program
+{
+    static void Main() // Método principal del programa
+    {
+        // Crear una instancia de la clase Cuenta y asignarla a la variable cuenta1
+        Cuenta cuenta1 = new Cuenta();
+
+        // Ciclo que se ejecutará continuamente hasta que el usuario decida salir
+        while (true)
+        {
+            // Mostrar opciones al usuario
+            Console.WriteLine("Digite una opcion:\n" +
+                              "1. Añadir saldo\n" +
+                              "2. Retirar saldo\n" +
+                              "3. Obtener saldo\n" +
+                              "4. Salir");
+
+            // Leer la opción ingresada por el usuario desde la consola y convertirla a un número entero
+            int opc= Convert.ToInt32(Console.ReadLine());
+
+            // Switch para manejar las diferentes opciones ingresadas por el usuario
+            switch (opc)
+            {
+                case 1:
+                    // Acción para agregar saldo a la cuenta
+                    Console.WriteLine("Digite la cantidad de saldo a ingresar:");
+                    double saldoAgregar = Convert.ToDouble(Console.ReadLine()); // Convertir la entrada de texto a un número decimal y almacenarlo en la variable saldoAgregar
+                    cuenta1.AgregarSaldo(saldoAgregar); // Llamar al método AgregarSaldo de la instancia cuenta1, pasando como argumento la cantidad ingresada por el usuario
+                    break;
+                case 2:
+                    // Acción para retirar saldo de la cuenta
+                    Console.WriteLine("Digite la cantidad de dinero a retirar:");
+                    double saldoRetirar = Convert.ToDouble(Console.ReadLine()); // Convertir la entrada de texto a un número decimal y almacenarlo en la variable saldoRetirar
+                    cuenta1.RetirarSaldo(saldoRetirar); // Llamar al método RetirarSaldo de la instancia cuenta1, pasando como argumento la cantidad ingresada por el usuario
+                    break;
+                case 3:
+                    // Acción para obtener el saldo actual de la cuenta
+                    cuenta1.ObtenerSaldo(); // Llamar al método ObtenerSaldo de la instancia cuenta1
+                    break;
+                case 4:
+                    // Acción para salir del programa
+                    Console.WriteLine("Haz cerrado el programa"); // Mostrar un mensaje de despedida
+                    return; // Salir del método Main y terminar la ejecución del programa
+                default:
+                    // Acción para manejar cualquier otra entrada inválida
+                    Console.WriteLine("Opción invalida."); // Mostrar un mensaje de error
+                    break;
+            }
+        }
+    }
+}
+
+// Definir la clase Cuenta
+class Cuenta
+{
+    // Campo privado para almacenar el saldo
+    private double saldo = 0;
+
+    // Método para agregar saldo a la cuenta
+    public void AgregarSaldo(double cantidad)
+    {
+        Saldo += cantidad; // Sumar la cantidad especificada al saldo actual
+        Console.WriteLine($"Se añadieron {cantidad} a su cuenta."); // Mostrar un mensaje con la cantidad añadida
+    }
+
+    // Método para retirar saldo de la cuenta
+    public void RetirarSaldo(double cantidad)
+    {
+        if (cantidad > Saldo)
+        {
+            Console.WriteLine("Fondos insuficientes."); // Mostrar un mensaje si la cantidad a retirar es mayor que el saldo disponible
+        }
+        else
+        {
+            Saldo -= cantidad; // Restar la cantidad especificada al saldo actual
+            Console.WriteLine($"Se retiraron {cantidad} de su cuenta"); // Mostrar un mensaje con la cantidad retirada
+        }
+    }
+
+    // Método para obtener el saldo actual de la cuenta
+    public void ObtenerSaldo()
+    {
+        Console.WriteLine($"Saldo actual: {Saldo}"); // Mostrar el saldo actual
+    }
+
+    // Propiedad pública para acceder al saldo (lectura solamente)
+    public double Saldo
+    {
+        get { return saldo; } // Devolver el valor del campo saldo
+        private set { saldo = value; } // Asignar un valor al campo saldo (solo accesible dentro de la clase)
+    }
+}
